@@ -1,4 +1,4 @@
-package com.amitesh.cryptocoin.util
+package com.amitesh.cryptocoin.core.presentation.util
 
 import com.amitesh.cryptocoin.R
 

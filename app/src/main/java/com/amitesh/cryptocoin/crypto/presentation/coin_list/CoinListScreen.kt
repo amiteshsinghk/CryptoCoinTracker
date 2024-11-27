@@ -21,45 +21,48 @@ import com.amitesh.cryptocoin.ui.theme.AppTheme
 
 @Composable
 fun CoinListScreen(
-  state: CoinListState,
-  modifier:Modifier = Modifier
-){
-  if (state.isLoading){
-    Box(modifier = Modifier
-      .fillMaxSize(),
-      contentAlignment = Alignment.Center
-    ){
-      CircularProgressIndicator()
+    state: CoinListState,
+    modifier: Modifier = Modifier
+) {
+
+
+    if (state.isLoading) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+    } else {
+        LazyColumn(
+            modifier = modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(state.coins) { coinItem ->
+                CoinListItem(
+                    coinUi = coinItem,
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth()
+                )
+                HorizontalDivider()
+            }
+        }
     }
-  } else{
-    LazyColumn (
-      modifier = Modifier
-        .fillMaxSize(),
-      verticalArrangement = Arrangement.spacedBy(8.dp)
-    ){
-      items(state.coins){coinItem->
-        CoinListItem(
-          coinUi = coinItem,
-          onClick = {},
-          modifier = Modifier.fillMaxWidth()
-        )
-        HorizontalDivider()
-      }
-    }
-  }
 }
 
 @PreviewLightDark
 @Composable
-private fun CoinListScreenPreview(){
-  AppTheme {
-    CoinListScreen(
-      state = CoinListState(
-        isLoading = false,
-        coins = (1..100).map { previewCoin.copy(id = it.toString()) }
-      ),
-      modifier = Modifier
-        .background(MaterialTheme.colorScheme.background)
-    )
-  }
+private fun CoinListScreenPreview() {
+    AppTheme {
+        CoinListScreen(
+            state = CoinListState(
+                isLoading = false,
+                coins = (1..100).map { previewCoin.copy(id = it.toString()) }
+            ),
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.background)
+        )
+    }
 }

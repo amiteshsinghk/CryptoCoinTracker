@@ -1,8 +1,8 @@
 package com.amitesh.cryptocoin.crypto.presentation.models
 
 import androidx.annotation.DrawableRes
-import com.amitesh.cryptocoin.crypto.data.Coin
-import com.amitesh.cryptocoin.util.getDrawableIdForCoin
+import com.amitesh.cryptocoin.crypto.domain.Coin
+import com.amitesh.cryptocoin.core.presentation.util.getDrawableIdForCoin
 import java.text.NumberFormat
 import java.util.Locale
 

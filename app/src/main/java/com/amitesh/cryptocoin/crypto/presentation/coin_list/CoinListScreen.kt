@@ -33,7 +33,7 @@ fun CoinListScreen(
     }
   } else{
     LazyColumn (
-      modifier = Modifier
+      modifier = modifier
         .fillMaxSize(),
       verticalArrangement = Arrangement.spacedBy(8.dp)
     ){

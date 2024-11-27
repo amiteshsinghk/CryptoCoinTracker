@@ -76,6 +76,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.androidx.lifecycle.runtime.compose)
     debugImplementation(libs.bundles.compose.debug)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

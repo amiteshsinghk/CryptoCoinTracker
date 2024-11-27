@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.amitesh.cryptocoin.crypto.data.Coin
+import com.amitesh.cryptocoin.crypto.domain.Coin
 import com.amitesh.cryptocoin.crypto.presentation.models.CoinUi
 import com.amitesh.cryptocoin.crypto.presentation.models.toCoinUi
 import com.amitesh.cryptocoin.ui.theme.AppTheme

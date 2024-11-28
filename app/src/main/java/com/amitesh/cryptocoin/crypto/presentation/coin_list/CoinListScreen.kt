@@ -22,6 +22,7 @@ import com.amitesh.cryptocoin.ui.theme.AppTheme
 @Composable
 fun CoinListScreen(
     state: CoinListState,
+    onAction: (CoinListAction) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -43,7 +44,7 @@ fun CoinListScreen(
             items(state.coins) { coinItem ->
                 CoinListItem(
                     coinUi = coinItem,
-                    onClick = {},
+                    onClick = {onAction(CoinListAction.OnCoinClick(coinItem))},
                     modifier = Modifier.fillMaxWidth()
                 )
                 HorizontalDivider()
@@ -61,6 +62,7 @@ private fun CoinListScreenPreview() {
                 isLoading = false,
                 coins = (1..100).map { previewCoin.copy(id = it.toString()) }
             ),
+            onAction = {},
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
         )

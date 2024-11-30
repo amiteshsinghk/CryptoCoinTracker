@@ -77,6 +77,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.lifecycle.runtime.compose)
+//    navigation pane
+    implementation(libs.androidx.compose.material3.adaptive.navigation)
     debugImplementation(libs.bundles.compose.debug)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 

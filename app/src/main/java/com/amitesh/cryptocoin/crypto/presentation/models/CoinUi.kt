@@ -3,6 +3,7 @@ package com.amitesh.cryptocoin.crypto.presentation.models
 import androidx.annotation.DrawableRes
 import com.amitesh.cryptocoin.crypto.domain.Coin
 import com.amitesh.cryptocoin.core.presentation.util.getDrawableIdForCoin
+import com.amitesh.cryptocoin.crypto.presentation.coin_detail.line_chart.DataPoint
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -15,6 +16,7 @@ data class CoinUi(
     val priceUsd: DisplayableNumber,
     val changePercent24Hr: DisplayableNumber,
     @DrawableRes val image: Int,
+    val coinPriceHistory: List<DataPoint> = emptyList(),
 )
 
 data class DisplayableNumber(
@@ -32,10 +34,10 @@ fun Coin.toCoinUi(): CoinUi {
         marketCapUsd = marketCapUsd.toDisplayableNumber(),
         changePercent24Hr = changePercent24Hr.toDisplayableNumber(),
         image = getDrawableIdForCoin(symbol)
-        )
+    )
 }
 
-fun Double.toDisplayableNumber(): DisplayableNumber{
+fun Double.toDisplayableNumber(): DisplayableNumber {
     val formatter = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
         minimumFractionDigits = 2
         maximumFractionDigits = 2

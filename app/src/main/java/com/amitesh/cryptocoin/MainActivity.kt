@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.amitesh.cryptocoin.core.navigation.AdaptiveCoinListDetailPane
+import com.amitesh.cryptocoin.core.navigation.CoinListDetailPane
 import com.amitesh.cryptocoin.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AdaptiveCoinListDetailPane(
+                    CoinListDetailPane(
                         modifier = Modifier.padding(innerPadding)
                     )
 

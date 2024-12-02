@@ -22,7 +22,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
-fun AdaptiveCoinListDetailPane(
+fun CoinListDetailPane(
     modifier: Modifier = Modifier,
     viewModel: CoinListViewModel = koinViewModel(),
 ){

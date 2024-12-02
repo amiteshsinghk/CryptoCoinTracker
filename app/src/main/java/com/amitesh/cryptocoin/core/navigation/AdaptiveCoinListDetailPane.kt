@@ -13,11 +13,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.amitesh.cryptocoin.core.presentation.util.ObserveAsEvents
 import com.amitesh.cryptocoin.core.presentation.util.toString
-import com.amitesh.cryptocoin.crypto.presentation.coin_detail.CoinDetailScreen
-import com.amitesh.cryptocoin.crypto.presentation.coin_list.CoinListAction
-import com.amitesh.cryptocoin.crypto.presentation.coin_list.CoinListEvent
-import com.amitesh.cryptocoin.crypto.presentation.coin_list.CoinListScreen
-import com.amitesh.cryptocoin.crypto.presentation.coin_list.CoinListViewModel
+import com.amitesh.cryptocoin.home.presentation.home_detail.CoinDetailScreen
+import com.amitesh.cryptocoin.home.presentation.home_list.ItemListAction
+import com.amitesh.cryptocoin.home.presentation.home_list.ItemListEvent
+import com.amitesh.cryptocoin.home.presentation.home_list.CoinListScreen
+import com.amitesh.cryptocoin.home.presentation.home_list.CoinListViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -30,7 +30,7 @@ fun AdaptiveCoinListDetailPane(
     val context = LocalContext.current
     ObserveAsEvents(events = viewModel.events) {
         when (it) {
-            is CoinListEvent.CoinListError -> {
+            is ItemListEvent.ItemListError -> {
                 Toast.makeText(
                     context,
                     it.error.toString(context),
@@ -50,7 +50,7 @@ fun AdaptiveCoinListDetailPane(
                     onAction = {
                         viewModel.onAction(it)
                         when(it){
-                            is CoinListAction.OnCoinClick -> {
+                            is ItemListAction.OnItemClick -> {
                                 navigator.navigateTo(
                                    pane = ListDetailPaneScaffoldRole.Detail
                                 )

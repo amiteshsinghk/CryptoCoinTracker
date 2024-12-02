@@ -4,9 +4,9 @@ import java.text.NumberFormat
 import java.util.Locale
 
 data class ValueLabel(
-    val value: Float,
-    val unit: String
-){
+    val value: Float, // value of the coin
+    val unit: String // unit of the coin
+){ //Calculation to displaying total 5 digit in label
     fun formatted(): String{
         val formatter = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
             val fractionDigits = when {

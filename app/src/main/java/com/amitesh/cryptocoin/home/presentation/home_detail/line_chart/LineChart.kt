@@ -40,13 +40,13 @@ import kotlin.random.Random
 fun LineChart(
     dataPoints: List<DataPoint>,
     style: ChartStyle,
-    visibleDataPointsIndices: IntRange,
+    visibleDataPointsIndices: IntRange, // data points range that is to be draw on canvas
     unit: String,
     modifier: Modifier = Modifier,
-    selectedDataPoint: DataPoint? = null,
-    onSelectedDataPoint: (DataPoint) -> Unit = {},
-    onXLabelWidthChange: (Float) -> Unit = {},
-    showHelperLines: Boolean = true
+    selectedDataPoint: DataPoint? = null, // selected data point
+    onSelectedDataPoint: (DataPoint) -> Unit = {}, // while dragging the selected data point
+    onXLabelWidthChange: (Float) -> Unit = {},//width of xlabel
+    showHelperLines: Boolean = true // to show the helper lines
 ) {
     val textStyle = LocalTextStyle.current.copy(
         fontSize = style.labelFontSize
@@ -76,6 +76,8 @@ fun LineChart(
         Log.d("LineChart","selectedDataPointIndexItem:: $selectedDataPoint :: index ==> ${dataPoints.indexOf(selectedDataPoint)} :: All Data Points ==> $dataPoints")
         dataPoints.indexOf(selectedDataPoint)
     }
+
+    // Actual co-ordinate of data points that we want to draw.
     var drawPoints by remember {
         mutableStateOf(listOf<DataPoint>())
     }
@@ -87,6 +89,7 @@ fun LineChart(
         modifier = modifier
             .fillMaxSize()
             .pointerInput(drawPoints, xLabelWidth){
+                // to detect the drag
                 detectHorizontalDragGestures { change, _ ->
                    val newSelected = getSelectedDataPointIndex(
                        touchOffsetX =  change.position.x,
@@ -119,6 +122,7 @@ fun LineChart(
         val maxXLabelLineCount = xLabelTextLayoutResults.maxOfOrNull { it.lineCount } ?: 0
         val xLabelLineHeight = if(maxXLabelLineCount>0)maxXLabelHeight / maxXLabelLineCount // Height of the x axis textView
                                 else 0
+        // Height of view port or the graph.
         val viewPortHeightPx = size.height-
                 (maxXLabelHeight + 2 * verticalPaddingPx +
                         xLabelLineHeight +xAxisLabelSpacingPx)
@@ -172,10 +176,17 @@ fun LineChart(
         val maximumWidthOfYLabelText = yLabelTextLayoutResults.maxOfOrNull { it.size.width } ?: 0
 
 /************************Graph Calculation***********************************/
-        val viewPortTopY = verticalPaddingPx + xLabelLineHeight + 10f
+        val viewPortTopY = verticalPaddingPx + xLabelLineHeight + 10f // 10f is tiny space between selected textview and Y axis top
         val viewPortRightX = size.width
         val viewPortBottomY = viewPortTopY + viewPortHeightPx
         val viewPortLeftX = 2f*horizontalPaddingPx + maximumWidthOfYLabelText
+//        val viewPort = Rect(
+//            left = viewPortLeftX,
+//            top = viewPortTopY,
+//            right = viewPortRightX,
+//            bottom = viewPortBottomY
+//        )
+//        viewPortHeight(viewPort.size.width * viewPort.size.height)
 
         /************************X-axis text label calculation***********************************/
         /*
@@ -225,6 +236,7 @@ fun LineChart(
                     value = visibleDataPoints[index].y,
                     unit = unit
                 )
+                Log.d("LineChart","selectedValue :: $selectedValue")
                 val  valueResult =measurer.measure(
                     text = selectedValue.formatted(),
                     style = textStyle.copy(

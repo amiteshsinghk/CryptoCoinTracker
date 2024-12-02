@@ -151,6 +151,7 @@ fun CoinDetailScreen(
                 } else {
                     0
                 }
+
                 val startIndex = (coin.coinPriceHistory.lastIndex - amountOfVisibleDataPoints)
                     .coerceAtLeast(0)
                 LineChart(

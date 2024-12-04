@@ -48,7 +48,7 @@ View Rendering: The View observes the state and re-renders accordingly.
 Prerequisites:
 Android Studio (latest version)
 Minimum SDK 24
-Installation:
+Installation
 Clone the repository:
 git clone https://github.com/amiteshsinghk/CryptoCoinTracker.git
 Open the project in Android Studio.
